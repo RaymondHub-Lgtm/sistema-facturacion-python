@@ -1,6 +1,5 @@
 class Inventario:
     def __init__(self):
-        # La lista empieza vacía, lista para que el código de tu compañero la llene
         self.productos = []
 
     def agregar_producto(self, nombre, cantidad, precio):
