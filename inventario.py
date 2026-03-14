@@ -1,15 +1,25 @@
-class Inventario:
-    def __init__(self):
-        self.productos = []
+import tkinter as tk
+from database import conexion
 
-    def agregar_producto(self, nombre, cantidad, precio):
-        nuevo_producto = {"nombre": nombre, "cantidad": cantidad, "precio": precio}
-        self.productos.append(nuevo_producto)
-        print(f"✅ Producto '{nombre}' registrado en el sistema.")
 
-    def mostrar_inventario(self):
-        if not self.productos:
-            print("El inventario está actualmente vacío.")
+def mostrar_inventario():
+    ventana_inv = tk.Toplevel()
+    ventana_inv.title("Estado del Inventario")
+    ventana_inv.geometry("400x500")
+
+    tk.Label(ventana_inv, text="Productos en Stock", font=("Arial", 16, "bold")).pack(
+        pady=10
+    )
+
+    lista_visual = tk.Listbox(ventana_inv)
+    lista_visual.pack(fill="both", expand=True, padx=20, pady=20)
+
+    try:
+        productos_db = conexion.obtener_productos()
+        if not productos_db:
+            lista_visual.insert(tk.END, "El inventario está vacío")
         else:
-            for p in self.productos:
-                print(p)
+            for prod in productos_db:
+                lista_visual.insert(tk.END, f"📦 {prod[0]} - ${prod[1]}")
+    except Exception as e:
+        lista_visual.insert(tk.END, "Error al leer la base de datos")
