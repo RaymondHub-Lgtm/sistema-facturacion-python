@@ -2,7 +2,7 @@ import tkinter as tk
 from database import conexion
 
 
-def mostrar_inventario():  # <-- Ahora es una función directa, sin clases
+def mostrar_inventario():
     ventana_inv = tk.Toplevel()
     ventana_inv.title("Estado del Inventario")
     ventana_inv.geometry("400x500")
