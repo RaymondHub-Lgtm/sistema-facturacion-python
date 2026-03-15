@@ -36,9 +36,22 @@ def ventana_productos():
 
     tk.Button(ventana, text="Agregar producto", command=agregar_producto).pack(pady=10)
 
+    def eliminar_producto_ui():
+        try:
+            seleccionado = lista_productos.get(lista_productos.curselection())
+            nombre = seleccionado.split(" - ")[0]
+            
+            conexion.eliminar_producto(nombre)
+            lista_productos.delete(lista_productos.curselection())
+        except:
+            print("Selecciona un producto primero")
+
+    tk.Button(ventana, text="Eliminar Producto", fg="white", bg="red", command=eliminar_producto_ui).pack(pady=5)
+
     
     for prod in conexion.obtener_productos():
         lista_productos.insert(tk.END, f"{prod[0]} - ${prod[1]}")
 
 def abrir_productos():
     ventana_productos()
+

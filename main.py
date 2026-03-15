@@ -1,9 +1,11 @@
 import tkinter as tk
 import producto
 import inventario
+import cliente 
 
 
 def abrir_clientes():
+    cliente.abrir_ventana(ventana)
     print("Abrir modulo de clientes")
 
 
