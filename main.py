@@ -2,7 +2,7 @@ import tkinter as tk
 import producto
 import inventario
 import cliente 
-
+import factura
 
 def abrir_clientes():
     cliente.abrir_ventana(ventana)
