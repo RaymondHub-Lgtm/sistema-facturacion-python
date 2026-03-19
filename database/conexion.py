@@ -7,7 +7,7 @@ db_path = os.path.join(BASE_DIR, "sistema.db")
 def guardar_producto(nombre, precio):
     conexion = sqlite3.connect(db_path) 
     cursor = conexion.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY, nombre TEXT, precio REAL)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, precio REAL)")
     cursor.execute("INSERT INTO productos (nombre, precio) VALUES (?, ?)", (nombre, precio))
     conexion.commit()
     conexion.close()
@@ -15,7 +15,7 @@ def guardar_producto(nombre, precio):
 def obtener_productos():
     conexion = sqlite3.connect(db_path)
     cursor = conexion.cursor()
-    cursor.execute("SELECT nombre, precio FROM productos")
+    cursor.execute("SELECT id, nombre, precio FROM productos")
     datos = cursor.fetchall()
     conexion.close()
     return datos
@@ -23,7 +23,7 @@ def obtener_productos():
 def guardar_cliente(nombre, telefono):
     conexion = sqlite3.connect(db_path)
     cursor = conexion.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clientes (id INTEGER PRIMARY KEY, nombre TEXT, telefono TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT)")
     cursor.execute("INSERT INTO clientes (nombre, telefono) VALUES (?, ?)", (nombre, telefono))
     conexion.commit()
     conexion.close()
@@ -31,22 +31,21 @@ def guardar_cliente(nombre, telefono):
 def obtener_clientes():
     conexion = sqlite3.connect(db_path)
     cursor = conexion.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS clientes (id INTEGER PRIMARY KEY, nombre TEXT, telefono TEXT)")
-    cursor.execute("SELECT nombre, telefono FROM clientes")
+    cursor.execute("SELECT id, nombre, telefono FROM clientes")
     datos = cursor.fetchall()
     conexion.close()
     return datos
 
-def eliminar_producto(nombre):
+def eliminar_producto(producto_id):
     conexion = sqlite3.connect(db_path)
     cursor = conexion.cursor()
-    cursor.execute("DELETE FROM productos WHERE nombre = ?", (nombre,))
+    cursor.execute("DELETE FROM productos WHERE id = ?", (producto_id,))
     conexion.commit()
     conexion.close()
 
-def eliminar_cliente(nombre):
+def eliminar_cliente(cliente_id):
     conexion = sqlite3.connect(db_path)
     cursor = conexion.cursor()
-    cursor.execute("DELETE FROM clientes WHERE nombre = ?", (nombre,))
+    cursor.execute("DELETE FROM clientes WHERE id = ?", (cliente_id,))
     conexion.commit()
     conexion.close()
