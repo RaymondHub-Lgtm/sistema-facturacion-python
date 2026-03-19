@@ -20,6 +20,7 @@ def abrir_inventario():
 
 
 def abrir_facturas():
+    factura.crear_factura()
     print("Abrir modulo de facturas")
 
 
