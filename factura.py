@@ -20,4 +20,4 @@ def crear_factura():
         cantidad = int(input("ingrese la cantidad: "))
         factura_items.append((producto_id, cantidad))
 
-        print("factura creada con exito.")
+    print("factura creada con exito.")
