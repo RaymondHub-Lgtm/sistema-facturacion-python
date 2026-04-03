@@ -20,7 +20,7 @@ def abrir_inventario():
 
 
 def abrir_facturas():
-    factura.crear_factura()
+    factura.ventana_facturas()
     print("Abrir modulo de facturas")
 
 
@@ -56,7 +56,7 @@ boton_inventario = tk.Button(
 boton_inventario.pack(pady=10)
 
 boton_facturas = tk.Button(
-    ventana, text="Facturas", width=20, height=2, command=abrir_facturas
+    ventana, text="Facturas", width=20, height=2, command= abrir_facturas
 )
 
 boton_facturas.pack(pady=10)
